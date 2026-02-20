@@ -113,7 +113,16 @@ class InteractionMeshRetargeter:
         elif self.object_name == "multi_boxes":
             robot_xml_path = self.task_constants.SCENE_XML_FILE
         else:
-            robot_xml_path = self.robot_model_path.replace(".urdf", "_w_" + self.object_name + ".xml")
+            object_xml_path = self.robot_model_path.replace(".urdf", f"_w_{self.object_name}.xml")
+            default_xml_path = self.robot_model_path.replace(".urdf", ".xml")
+            if Path(object_xml_path).exists():
+                robot_xml_path = object_xml_path
+            else:
+                print(
+                    "Warning: object-specific MuJoCo XML not found: "
+                    f"{object_xml_path}. Falling back to {default_xml_path}."
+                )
+                robot_xml_path = default_xml_path
 
         self.robot_model = mujoco.MjModel.from_xml_path(robot_xml_path)
         print("Loading robot model from: ", robot_xml_path)

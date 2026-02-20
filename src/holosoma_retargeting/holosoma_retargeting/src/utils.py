@@ -35,12 +35,19 @@ def load_intermimic_data(file_path):
     return human_joints, object_poses
 
 
-def calculate_scale_factor(task_name, robot_height):
+def calculate_scale_factor(task_name, robot_height, default_human_height=1.75):
     """Calculate scale factor based on human height."""
+    env_default_h = os.getenv("HOLOSOMA_DEFAULT_HUMAN_HEIGHT")
+    if env_default_h is not None:
+        try:
+            default_human_height = float(env_default_h)
+        except ValueError:
+            pass
+
     with open("demo_data/height_dict.pkl", "rb") as f:
         height_dict = pickle.load(f)
     sub_name = task_name.split("_")[0]
-    human_height = height_dict[sub_name]
+    human_height = height_dict.get(sub_name, default_human_height)
     return robot_height / human_height
 
 
