@@ -23,3 +23,4 @@ converted_res/
 data_utils/lafan1
 *.sh
 *.bvh
+!demo_results/**
