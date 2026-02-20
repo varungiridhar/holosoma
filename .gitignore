@@ -27,3 +27,12 @@ src/holosoma/holosoma/data/robots/converted_rank*/
 # other
 *.egg-info
 __pycache__
+
+# Ignored demo data, models, and backups
+src/holosoma_retargeting/holosoma_retargeting/demo_data/
+src/holosoma_retargeting/holosoma_retargeting/models/largebox/
+src/holosoma_retargeting/holosoma_retargeting/models/plasticbox/
+src/holosoma_retargeting/holosoma_retargeting/models/smallbox/
+src/holosoma_retargeting/holosoma_retargeting/models/smallbox_cleaned_simplified/
+src/holosoma_retargeting/holosoma_retargeting/models/smalltable_cleaned_simplified/
+src/holosoma_retargeting/holosoma_retargeting/.gitignore.bak
